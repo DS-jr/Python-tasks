@@ -1,0 +1,23 @@
+# Write a program which randomly picks an integer (from 1 to 7). 
+# Your program should prompt the user for guesses – if the user guesses incorrectly, it should print whether the guess is too high or too low. 
+# If the user guesses correctly, the program should print how many guesses the user took to guess the right answer. 
+# You can assume that the user will enter valid input.
+
+import random
+
+integer_random1 = random.randint(1, 7)
+attempts_1 = 0
+input_number1 = None
+
+while not input_number1 == integer_random1:
+    input_number1 = int(input("Enter an integer from 1 to 7: "))
+    attempts_1 += 1
+
+    if input_number1 == integer_random1: 
+        print("Congrats! The correct number was %d. You guessed it with %d attempt(s)" %(integer_random1, attempts_1))
+        break
+    
+    if input_number1 > integer_random1: 
+        print("The secret number is smaller. Try again") 
+    if input_number1 < integer_random1:
+        print("The secret number is bigger. Try again") 
