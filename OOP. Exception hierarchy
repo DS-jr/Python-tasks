@@ -1,0 +1,66 @@
+#Write a simple program which loops over a list of user data (username, email and age) and adds each user to a directory if the user is valid (unique, correct email, at least 16 years old). 
+#You do not need to store the age.
+#Write a simple exception hierarchy which defines a different exception for each of these error conditions:
+#   1. the username is not unique
+#   2. the age is not a positive integer
+#   3. the user is under 16
+#   4. the email address is not valid (a simple check for a username, the @ symbol and a domain name is sufficient)
+#Raise these exceptions in your program where appropriate.
+#Whenever an exception occurs, your program should move onto the next set of data in the list.
+#Print a different error message for each different kind of exception.
+
+class Duplicate_Username_class(Exception):
+    pass
+
+class Invalid_Age_Error_class(Exception):
+    pass
+
+class Inappropriate_Age_class(Exception):
+    pass
+
+class Invalid_Email_Error_class(Exception):
+    pass
+
+class User_class:
+    def __init__(self, username, email):
+       self.username = username
+       self.email = email
+
+example_list = [
+    ("jane", "jane@example.com", 21),
+    ("bob", "bob@example", 19),
+    ("jane", "jane2@example.com", 25),
+    ("steve", "steve@somewhere", 15),
+    ("joe", "joe", 23),
+    ("anna", "anna@example.com", -3),
+]
+
+dir1 = {}  
+
+for username2, email2, age2 in example_list:
+    try:
+        if username2 in dir1:
+            raise Duplicate_Username_class()
+        if age2 <= 0:
+            raise Invalid_Age_Error_class()
+        if age2 < 16:
+            raise Inappropriate_Age_class()
+
+        email_parts1 = email2.split('@')
+        if len(email_parts1) != 2 or not email_parts1[0] or not email_parts1[1]:
+            raise Invalid_Email_Error_class()
+
+    except Duplicate_Username_class:
+        print("UsErName '%s' is alReady usEd." % username2)
+
+    except Invalid_Age_Error_class:
+        print("aGe is '%d', can NOT be negative." % age2)
+
+    except Inappropriate_Age_class:
+        print("aGe '%d' is below 16y.o." % age2)
+
+    except Invalid_Email_Error_class:
+        print("'%s' is NOT a valid email." % email2)
+
+    else:
+        dir1[username2] = User_class(username2, email2)
