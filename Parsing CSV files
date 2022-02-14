@@ -9,3 +9,5 @@ with open("csv1_file.csv") as file_1:
         w_1 = csv.writer(file_2) 
         for row_1 in r_1: 
             w_1.writerow([row_1[0], row_1[2], row_1[1], sum(int(k_1) for k_1 in row_1)])  
+            
+           
