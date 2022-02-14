@@ -1,0 +1,11 @@
+# Open a CSV file which contains three columns of integer numbers. 
+# Write out the data to a new CSV file, swapping around the second and third columns and adding a fourth column which contains the sum of the first three integers.
+
+import csv 
+
+with open("csv1_file.csv") as file_1: 
+    with open("csv2_file.csv", "w") as file_2:
+        r_1 = csv.reader(file_1)
+        w_1 = csv.writer(file_2) 
+        for row_1 in r_1: 
+            w_1.writerow([row_1[0], row_1[2], row_1[1], sum(int(k_1) for k_1 in row_1)])  
